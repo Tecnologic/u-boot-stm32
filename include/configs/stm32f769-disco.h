@@ -1,6 +1,7 @@
 /*
  * (C) Copyright 2016
  * Vikas Manocha, <vikas.manocha@st.com>
+ * Alex Brand, <tecnologic86@gmail.com>
  *
  * SPDX-License-Identifier:	GPL-2.0+
  */
@@ -22,12 +23,12 @@
  * Configuration of the external SDRAM memory
  */
 #define CONFIG_NR_DRAM_BANKS		1
-#define CONFIG_SYS_RAM_SIZE		(8 * 1024 * 1024)
+#define CONFIG_SYS_RAM_SIZE		(16 * 1024 * 1024)
 #define CONFIG_SYS_RAM_CS		1
 #define CONFIG_SYS_RAM_FREQ_DIV		2
 #define CONFIG_SYS_RAM_BASE		0xC0000000
-#define CONFIG_SYS_SDRAM_BASE		CONFIG_SYS_RAM_BASE
-#define CONFIG_SYS_LOAD_ADDR		0xC0400000
+#define CONFIG_SYS_SDRAM_BASE	CONFIG_SYS_RAM_BASE
+#define CONFIG_SYS_LOAD_ADDR	0xC0400000
 #define CONFIG_LOADADDR			0xC0400000
 
 #define CONFIG_SYS_MAX_FLASH_SECT	8
@@ -54,7 +55,7 @@
 					+ sizeof(CONFIG_SYS_PROMPT) + 16)
 
 #define CONFIG_SYS_MAXARGS		16
-#define CONFIG_SYS_MALLOC_LEN		(16 * 1024)
+#define CONFIG_SYS_MALLOC_LEN	(16 * 1024)
 #define CONFIG_STACKSIZE		(64 << 10)
 
 #define CONFIG_BAUDRATE			115200
