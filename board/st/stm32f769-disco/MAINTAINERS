@@ -1,0 +1,6 @@
+STM32F769 DISCOVERY BOARD
+M:	Alex Brand <tecnologic86@gmail.com>
+S:	Maintained
+F:	board/st/stm32f769-disco
+F:	include/configs/stm32f769-disco.h
+F:	configs/stm32f769-disco_defconfig
