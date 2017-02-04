@@ -1007,7 +1007,14 @@ config TARGET_THUNDERX_88XX
 	select OF_CONTROL
 	select SYS_CACHE_SHIFT_7
 
+config ARCH_ASPEED
+	bool "Support Aspeed SoCs"
+	select OF_CONTROL
+	select DM
+
 endchoice
+
+source "arch/arm/mach-aspeed/Kconfig"
 
 source "arch/arm/mach-at91/Kconfig"
 
@@ -1024,8 +1031,6 @@ source "arch/arm/mach-integrator/Kconfig"
 source "arch/arm/mach-keystone/Kconfig"
 
 source "arch/arm/mach-kirkwood/Kconfig"
-
-source "arch/arm/mach-litesom/Kconfig"
 
 source "arch/arm/mach-mvebu/Kconfig"
 
@@ -1118,6 +1123,7 @@ source "board/freescale/mx53loco/Kconfig"
 source "board/freescale/mx53smd/Kconfig"
 source "board/freescale/s32v234evb/Kconfig"
 source "board/freescale/vf610twr/Kconfig"
+source "board/grinn/chiliboard/Kconfig"
 source "board/gumstix/pepper/Kconfig"
 source "board/h2200/Kconfig"
 source "board/hisilicon/hikey/Kconfig"

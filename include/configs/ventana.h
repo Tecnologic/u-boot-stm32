@@ -18,8 +18,7 @@
 #define CONFIG_TEGRA_ENABLE_UARTD
 #define CONFIG_SYS_NS16550_COM1		NV_PA_APB_UARTD_BASE
 
-/* SD/MMC */
-#define CONFIG_GENERIC_MMC
+#define CONFIG_MACH_TYPE		MACH_TYPE_VENTANA
 
 /* Environment in eMMC, at the end of 2nd "boot sector" */
 #define CONFIG_ENV_IS_IN_MMC

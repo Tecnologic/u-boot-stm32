@@ -19,11 +19,10 @@
 #define CONFIG_TEGRA_UARTA_UAA_UAB
 #define CONFIG_SYS_NS16550_COM1		NV_PA_APB_UARTA_BASE
 
+#define CONFIG_MACH_TYPE		MACH_TYPE_WHISTLER
+
 /* I2C */
 #define CONFIG_SYS_I2C_TEGRA
-
-/* SD/MMC */
-#define CONFIG_GENERIC_MMC
 
 /*
  * Environment in eMMC, at the end of 2nd "boot sector". Note: This assumes

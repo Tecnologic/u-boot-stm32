@@ -10,6 +10,10 @@ config MMC
 	  If you want MMC/SD/SDIO support, you should say Y here and
 	  also to your specific host controller driver.
 
+config GENERIC_MMC
+	bool "Generic MMC driver framework"
+	default MMC
+
 config DM_MMC
 	bool "Enable MMC controllers using Driver Model"
 	depends on DM
@@ -46,27 +50,6 @@ config SPL_MMC_TINY
 	  one MMC driver. The MMC driver can be adjusted to avoid any malloc
 	  operations too, which can remove the need for malloc support in SPL
 	  and thus further reduce footprint.
-
-config MSM_SDHCI
-	bool "Qualcomm SDHCI controller"
-	depends on DM_MMC && BLK && DM_MMC_OPS
-	depends on MMC_SDHCI
-	help
-	  Enables support for SDHCI 2.0 controller present on some Qualcomm
-          Snapdragon devices. This device is compatible with eMMC v4.5 and
-          SD 3.0 specifications. Both SD and eMMC devices are supported.
-	  Card-detect gpios are not supported.
-
-config ATMEL_SDHCI
-	bool "Atmel SDHCI controller support"
-	depends on DM_MMC && BLK && DM_MMC_OPS && ARCH_AT91
-	depends on MMC_SDHCI
-	help
-	  This enables support for the Atmel SDHCI controller, which supports
-	  the embedded MultiMedia Card (e.MMC) Specification V4.51, the SD
-	  Memory Card Specification V3.0, and the SDIO V3.0 specification.
-	  It is compliant with the SD Host Controller Standard V3.0
-	  specification.
 
 config MMC_DAVINCI
 	bool "TI DAVINCI Multimedia Card Interface support"
@@ -154,27 +137,6 @@ config SH_SDHI
 	help
 	  Support for the on-chip SDHI host controller on SuperH/Renesas ARM SoCs platform
 
-config PIC32_SDHCI
-	bool "Microchip PIC32 on-chip SDHCI support"
-	depends on DM_MMC && MACH_PIC32
-	depends on MMC_SDHCI
-	help
-	  Support for Microchip PIC32 SDHCI controller.
-
-config ZYNQ_SDHCI
-	bool "Arasan SDHCI controller support"
-	depends on DM_MMC && OF_CONTROL && BLK && DM_MMC_OPS
-	depends on MMC_SDHCI
-	help
-	  Support for Arasan SDHCI host controller on Zynq/ZynqMP ARM SoCs platform
-
-config ROCKCHIP_SDHCI
-	bool "Arasan SDHCI controller for Rockchip support"
-	depends on DM_MMC && BLK && DM_MMC_OPS
-	depends on MMC_SDHCI
-	help
-	  Support for Arasan SDHCI host controller on Rockchip ARM SoCs platform
-
 config MMC_UNIPHIER
 	bool "UniPhier SD/MMC Host Controller support"
 	depends on ARCH_UNIPHIER
@@ -183,9 +145,10 @@ config MMC_UNIPHIER
 	help
 	  This selects support for the SD/MMC Host Controller on UniPhier SoCs.
 
-config SANDBOX_MMC
+config MMC_SANDBOX
 	bool "Sandbox MMC support"
-	depends on MMC && SANDBOX
+	depends on SANDBOX
+	depends on BLK && DM_MMC_OPS && OF_CONTROL
 	help
 	  This select a dummy sandbox MMC driver. At present this does nothing
 	  other than allow sandbox to be build with MMC support. This
@@ -216,6 +179,18 @@ config MMC_SDHCI_SDMA
 	help
 	  This enables support for the SDMA (Single Operation DMA) defined
 	  in the SD Host Controller Standard Specification Version 1.00 .
+
+config MMC_SDHCI_ATMEL
+	bool "Atmel SDHCI controller support"
+	depends on ARCH_AT91
+	depends on DM_MMC && BLK && DM_MMC_OPS && ARCH_AT91
+	depends on MMC_SDHCI
+	help
+	  This enables support for the Atmel SDHCI controller, which supports
+	  the embedded MultiMedia Card (e.MMC) Specification V4.51, the SD
+	  Memory Card Specification V3.0, and the SDIO V3.0 specification.
+	  It is compliant with the SD Host Controller Standard V3.0
+	  specification.
 
 config MMC_SDHCI_BCM2835
 	tristate "SDHCI support for the BCM2835 SD/MMC Controller"
@@ -252,6 +227,16 @@ config MMC_SDHCI_KONA
 
 	  If you have a controller with this interface, say Y here.
 
+config MMC_SDHCI_MSM
+	bool "Qualcomm SDHCI controller"
+	depends on BLK && DM_MMC_OPS
+	depends on MMC_SDHCI
+	help
+	  Enables support for SDHCI 2.0 controller present on some Qualcomm
+          Snapdragon devices. This device is compatible with eMMC v4.5 and
+          SD 3.0 specifications. Both SD and eMMC devices are supported.
+	  Card-detect gpios are not supported.
+
 config MMC_SDHCI_MV
 	bool "SDHCI support on Marvell platform"
 	depends on ARCH_MVEBU
@@ -263,6 +248,21 @@ config MMC_SDHCI_MV
 	  If you have a controller with this interface, say Y here.
 
 	  If unsure, say N.
+
+config MMC_SDHCI_PIC32
+	bool "Microchip PIC32 on-chip SDHCI support"
+	depends on DM_MMC && MACH_PIC32
+	depends on MMC_SDHCI
+	help
+	  Support for Microchip PIC32 SDHCI controller.
+
+config MMC_SDHCI_ROCKCHIP
+	bool "Arasan SDHCI controller for Rockchip support"
+	depends on ARCH_ROCKCHIP
+	depends on DM_MMC && BLK && DM_MMC_OPS
+	depends on MMC_SDHCI
+	help
+	  Support for Arasan SDHCI host controller on Rockchip ARM SoCs platform
 
 config MMC_SDHCI_S5P
 	bool "SDHCI support on Samsung S5P SoC"
@@ -307,6 +307,14 @@ config MMC_SDHCI_TEGRA
 	  platform with SD or MMC devices, say Y here.
 
 	  If unsure, say N.
+
+config MMC_SDHCI_ZYNQ
+	bool "Arasan SDHCI controller support"
+	depends on ARCH_ZYNQ || ARCH_ZYNQMP
+	depends on DM_MMC && OF_CONTROL && BLK && DM_MMC_OPS
+	depends on MMC_SDHCI
+	help
+	  Support for Arasan SDHCI host controller on Zynq/ZynqMP ARM SoCs platform
 
 config MMC_SUNXI
 	bool "Allwinner sunxi SD/MMC Host Controller support"

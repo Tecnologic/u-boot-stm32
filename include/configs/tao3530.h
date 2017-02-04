@@ -24,8 +24,6 @@
 #define CONFIG_ARM_ERRATA_430973
 #define CONFIG_ARM_ERRATA_621766
 
-#define MACH_TYPE_OMAP3_TAO3530		2836
-
 #define CONFIG_SDRC			/* Has an SDRC controller */
 
 #include <asm/arch/cpu.h>		/* get chip and board defs */
@@ -70,7 +68,6 @@
 /* allow to overwrite serial and ethaddr */
 #define CONFIG_ENV_OVERWRITE
 #define CONFIG_BAUDRATE			115200
-#define CONFIG_GENERIC_MMC
 
 /* GPIO banks */
 #define CONFIG_OMAP3_GPIO_2		/* GPIO32 ..63  is in GPIO bank 2 */

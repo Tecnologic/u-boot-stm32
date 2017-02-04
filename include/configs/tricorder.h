@@ -24,6 +24,7 @@
 #define CONFIG_ARM_ERRATA_430973
 #define CONFIG_ARM_ERRATA_621766
 
+#define CONFIG_MACH_TYPE		MACH_TYPE_TRICORDER
 /*
  * 1MB into the SDRAM to allow for SPL's bss at the beginning of SDRAM
  * 64 bytes before this address should be set aside for u-boot.img's
@@ -73,9 +74,6 @@
 #define CONFIG_BAUDRATE			115200
 #define CONFIG_SYS_BAUDRATE_TABLE	{4800, 9600, 19200, 38400, 57600,\
 					115200}
-
-/* MMC */
-#define CONFIG_GENERIC_MMC
 
 /* I2C */
 #define CONFIG_SYS_I2C

@@ -1,5 +1,9 @@
 if AM33XX
 
+config AM33XX_CHILISOM
+	bool
+	select SUPPORT_SPL
+
 choice
 	prompt "AM33xx board select"
 	optional
@@ -59,6 +63,13 @@ config TARGET_BAV335X
 	  ethernet with simple connection to external connectors.
 
 	  For more information, visit: http://birdland.com/oem
+
+config TARGET_CHILIBOARD
+	bool "Grinn chiliBoard"
+	select AM33XX_CHILISOM
+	select BOARD_LATE_INIT
+	select DM
+	select DM_SERIAL
 
 config TARGET_CM_T335
 	bool "Support cm_t335"

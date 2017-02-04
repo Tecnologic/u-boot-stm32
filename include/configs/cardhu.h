@@ -25,11 +25,10 @@
 #define CONFIG_TEGRA_ENABLE_UARTA
 #define CONFIG_SYS_NS16550_COM1		NV_PA_APB_UARTA_BASE
 
+#define CONFIG_MACH_TYPE		MACH_TYPE_CARDHU
+
 /* I2C */
 #define CONFIG_SYS_I2C_TEGRA
-
-/* SD/MMC */
-#define CONFIG_GENERIC_MMC
 
 /* Environment in eMMC, at the end of 2nd "boot sector" */
 #define CONFIG_ENV_IS_IN_MMC

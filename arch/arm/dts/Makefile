@@ -176,6 +176,8 @@ dtb-$(CONFIG_FSL_LSCH2) += fsl-ls1043a-qds-duart.dtb \
 
 dtb-$(CONFIG_ARCH_SNAPDRAGON) += dragonboard410c.dtb
 
+dtb-$(CONFIG_STM32F7) += stm32f746-disco.dtb
+
 dtb-$(CONFIG_MACH_SUN4I) += \
 	sun4i-a10-a1000.dtb \
 	sun4i-a10-ba10-tvbox.dtb \
@@ -313,6 +315,7 @@ dtb-$(CONFIG_MX6) += imx6ull-14x14-evk.dtb \
 	imx6dl-icore-rqs.dtb \
 	imx6q-icore.dtb \
 	imx6q-icore-rqs.dtb \
+	imx6sx-sabreauto.dtb \
 	imx6ul-geam-kit.dtb
 
 dtb-$(CONFIG_MX7) += imx7-colibri.dtb
@@ -333,6 +336,8 @@ dtb-$(CONFIG_ARCH_BCM283X) += \
 	bcm2835-rpi-b.dtb \
 	bcm2836-rpi-2-b.dtb \
 	bcm2837-rpi-3-b.dtb
+
+dtb-$(CONFIG_ARCH_ASPEED) += ast2500-evb.dtb
 
 targets += $(dtb-y)
 
